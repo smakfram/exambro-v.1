@@ -1,0 +1,6 @@
+{
+  "name": "Secure ExamBrowser Kiosk Engine",
+  "description": "Cross-platform Secure Exam Browser blueprint, native security implementations, and interactive live Kiosk simulator for Android, iOS, and Desktop.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
