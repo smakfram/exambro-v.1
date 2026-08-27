@@ -7,8 +7,9 @@ import {
   QrCode, 
   Terminal, 
   Lock,
-  Smartphone,
-  Monitor
+  Smartphone, 
+  Monitor,
+  Github
 } from 'lucide-react';
 import { ActiveTab } from '../types';
 
@@ -26,6 +27,17 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange }) => {
       badge: 'Live Test'
     },
     {
+      id: 'github-apk',
+      label: 'GitHub APK Builder',
+      icon: <Github className="w-4 h-4" />,
+      badge: 'Auto CI/CD'
+    },
+    {
+      id: 'qr-generator',
+      label: 'QR Code & Token Generator',
+      icon: <QrCode className="w-4 h-4" />
+    },
+    {
       id: 'flutter-code',
       label: 'Flutter & Native Code',
       icon: <Code2 className="w-4 h-4" />
@@ -39,11 +51,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange }) => {
       id: 'architecture',
       label: 'Arsitektur & Keamanan',
       icon: <Layers className="w-4 h-4" />
-    },
-    {
-      id: 'qr-generator',
-      label: 'QR Code & Token Generator',
-      icon: <QrCode className="w-4 h-4" />
     }
   ];
 

@@ -4,6 +4,7 @@ import { KioskSimulator } from './components/KioskSimulator';
 import { CodeViewer } from './components/CodeViewer';
 import { ArchitectureViewer } from './components/ArchitectureViewer';
 import { ExamConfigurator } from './components/ExamConfigurator';
+import { GitHubApkBuilder } from './components/GitHubApkBuilder';
 import { ActiveTab, ExamConfig } from './types';
 import { ShieldCheck, ShieldAlert, Sparkles, BookOpen, Lock } from 'lucide-react';
 
@@ -44,6 +45,10 @@ export default function App() {
             config={examConfig}
             onUpdateConfig={setExamConfig}
           />
+        )}
+
+        {activeTab === 'github-apk' && (
+          <GitHubApkBuilder />
         )}
 
         {(activeTab === 'flutter-code' || activeTab === 'electron-code' || activeTab === 'native-configs') && (

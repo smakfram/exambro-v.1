@@ -764,5 +764,71 @@ import Flutter
     self.blurEffectView = nil
   }
 }`
+  },
+  {
+    id: 'github-actions-apk-workflow',
+    filename: '.github/workflows/build-apk.yml',
+    language: 'yaml',
+    platform: 'System Config',
+    category: 'CI/CD & Cloud Build',
+    description: 'Workflow GitHub Actions otomatis untuk mengompilasi APK rilis Android langsung di cloud GitHub saat commit/push, dan merilis file app-release.apk secara publik.',
+    code: `name: Build & Release ExamBrowser APK
+
+on:
+  push:
+    branches: [ main, master ]
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-apk:
+    name: Build Android Release APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup Java (JDK 17)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🐦 Setup Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.x'
+          channel: 'stable'
+          cache: true
+
+      - name: 📦 Install Flutter Dependencies
+        run: flutter pub get
+
+      - name: 🔨 Build Universal Release APK
+        run: |
+          flutter build apk --release
+
+      - name: 📤 Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Secure-ExamBrowser-Android-APK
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30
+
+      - name: 🚀 Publish Public Online Release
+        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Secure ExamBrowser Release \${{ github.ref_name || 'v1.0.0' }}
+          tag_name: \${{ github.ref_name || 'v1.0.0' }}
+          files: build/app/outputs/flutter-apk/app-release.apk
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}`
   }
 ];

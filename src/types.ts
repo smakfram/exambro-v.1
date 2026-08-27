@@ -1,6 +1,6 @@
 export type PlatformTarget = 'flutter-mobile' | 'electron-desktop' | 'android-native' | 'ios-native' | 'windows-native';
 
-export type ActiveTab = 'simulator' | 'flutter-code' | 'electron-code' | 'native-configs' | 'architecture' | 'qr-generator';
+export type ActiveTab = 'simulator' | 'flutter-code' | 'electron-code' | 'native-configs' | 'architecture' | 'qr-generator' | 'github-apk';
 
 export interface ExamConfig {
   title: string;
